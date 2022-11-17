@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import {FlatList} from "react-native";
 
 import { CATEGORIES } from "../data/dummy-data";
+import CategoryTitleGrid from "../Components/CategoryTitleGrid";
 
-function renderCategoryItem(item){
-    return
+function renderCategoryItem(itemData){
+    return <CategoryTitleGrid title={itemData.item.title} color={itemData.item.color}/>
 }
 
 export default function CategoriesScreen() {
@@ -13,6 +14,7 @@ export default function CategoriesScreen() {
             data={CATEGORIES}
             renderItem={renderCategoryItem}
             keyExtractor={item => item.id}
+            numColumns={2}
         />
     );
 }
