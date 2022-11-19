@@ -1,12 +1,17 @@
 import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
+// import {useNavigation} from "@react-navigation/native";
 
-export default function CategoryTitleGrid({ title, color }) {
-
+export default function CategoryTitleGrid({ title, color, onPress }) {
+    // const navigation = useNavigation();
+    // function navigationHandler() {
+    //     navigation.navigate("MealOverview");
+    // }
     return (
         <View style={[styles.gridItem,{backgroundColor:color}]}>
             <Pressable
-                android_ripple={{ color: '#ccc' }}
+                android_ripple={{ color: '#eadddd' }}
                 style={({pressed})=>[styles.pressableGrid,pressed && styles.pressedGrid]}
+                onPress={onPress}
             >
                 <View style={styles.innerContainer}>
                     <Text style={styles.title}>{title}</Text>
@@ -42,6 +47,7 @@ const styles = StyleSheet.create({
     innerContainer: {
         flex: 1,
         padding: 16,
+        borderRadius: 8,
         justifyContent: 'center',
         alignItems: 'center'
     },

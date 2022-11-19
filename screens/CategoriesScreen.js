@@ -1,14 +1,26 @@
-import { StyleSheet } from 'react-native';
-import {FlatList} from "react-native";
+import { StyleSheet, FlatList } from 'react-native';
 
 import { CATEGORIES } from "../data/dummy-data";
 import CategoryTitleGrid from "../Components/CategoryTitleGrid";
 
-function renderCategoryItem(itemData){
-    return <CategoryTitleGrid title={itemData.item.title} color={itemData.item.color}/>
-}
 
-export default function CategoriesScreen() {
+export default function CategoriesScreen({navigation}) {
+    function renderCategoryItem({item}){
+        function pressHandler() {
+            navigation.navigate("MealOverview",{
+                categoryId:item.id,
+                categoryTitle:item.title
+            });
+        }
+        return (
+            <CategoryTitleGrid
+                title={item.title}
+                color={item.color}
+                onPress={pressHandler}
+            />
+        )
+    }
+
     return (
         <FlatList
             data={CATEGORIES}
